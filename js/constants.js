@@ -25,3 +25,7 @@ let colors = [
 // x offset
 total_space = (ncol * (boxWidth + 0)) / 2
 xStart = -1 * total_space
+
+// keyboard input
+keyboardC = ["ArrowLeft", "ArrowRight"]
+keys = [0,0]

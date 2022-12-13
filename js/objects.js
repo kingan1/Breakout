@@ -92,7 +92,7 @@ function addWalls() {
 
     // want it to go from topWall.y to bottomWall.y
     const geometryL = new THREE.BoxGeometry(boxHeight, topWall.position.y - bottomWall.position.y, wallDepth)
-    const leftWall = new THREE.Mesh(geometryL, material)
+    leftWall = new THREE.Mesh(geometryL, material)
     leftWall.position.set(
         xStart - boxWidth,
         -boxHeight*2, 
@@ -108,7 +108,6 @@ function addWalls() {
         -((wallDepth/2) - boxDepth)
     );
     scene.add(rightWall)
-    console.log(geometryR)
 
     const geometryB = new THREE.BoxGeometry(ncol * (xSpace) + boxWidth, topWall.position.y - bottomWall.position.y, boxDepth)
     backWall = new THREE.Mesh(geometryB, material)

@@ -6,9 +6,35 @@ renderer.setSize(window.innerWidth, window.innerHeight)
 document.body.appendChild(renderer.domElement)
 
 camera.position.z = 5
+document.addEventListener('keydown', onKeyPress, false)
+document.addEventListener('keyup', onKeyUp, false)
+
+function onKeyPress(event) {
+    if (keyboardC.includes(event.code)) {
+        event.preventDefault()
+        keys[keyboardC.indexOf(event.code)] = true
+    }
+}
+function onKeyUp(event) {
+    if (keyboardC.includes(event.code)) {
+        event.preventDefault()
+        keys[keyboardC.indexOf(event.code)] = false
+    }
+}
 
 function animate () {
     requestAnimationFrame(animate)
+    // left
+    // right
+    d = 0.05
+
+    if (keys[0]) {
+        if (checkPaddleBound(-1 * d, paddleMesh.position.x))
+            paddleMesh.position.x -= d
+    }else if (keys[1]) {
+        if (checkPaddleBound(d, paddleMesh.position.x))
+            paddleMesh.position.x += d
+    }
 
     renderer.render(scene, camera)
 };
