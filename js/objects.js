@@ -66,6 +66,58 @@ function setupBallPaddle() {
     ballMesh = new THREE.Mesh(ballGeometry, ballMaterial)
     ballMesh.position.copy(initialBallPosition)
     scene.add(ballMesh)
+}
+
+function addWalls() {
+    // create border
+    let wallDepth = 2.0
+    const geometry = new THREE.BoxGeometry(ncol * (xSpace) + boxWidth, boxHeight, wallDepth)
+    const material = new THREE.MeshPhongMaterial({ color: 'black' })
+    topWall = new THREE.Mesh(geometry, material)
+    topWall.position.set(
+        0.05,
+        (nrow+1) * (boxHeight*2) - (boxHeight), 
+        -((wallDepth/2) - boxDepth)
+    );
+    scene.add(topWall)
+
+    const geometryF = new THREE.BoxGeometry(ncol * (xSpace) + boxWidth, boxHeight, wallDepth)
+    const bottomWall = new THREE.Mesh(geometryF, material)
+    bottomWall.position.set(
+        0.05,
+        paddleMesh.position.y - (boxHeight * 2),
+        -((wallDepth/2) - boxDepth)
+    );
+    scene.add(bottomWall)
+
+    // want it to go from topWall.y to bottomWall.y
+    const geometryL = new THREE.BoxGeometry(boxHeight, topWall.position.y - bottomWall.position.y, wallDepth)
+    const leftWall = new THREE.Mesh(geometryL, material)
+    leftWall.position.set(
+        xStart - boxWidth,
+        -boxHeight*2, 
+        -((wallDepth/2) - boxDepth)
+    );
+    scene.add(leftWall)
+
+    const geometryR = new THREE.BoxGeometry(boxHeight, topWall.position.y - bottomWall.position.y, wallDepth)
+    rightWall = new THREE.Mesh(geometryR, material)
+    rightWall.position.set(
+        topWall.position.x + (ncol * (xSpace) + boxWidth)/2 - (boxHeight / 2),
+        -boxHeight*2, 
+        -((wallDepth/2) - boxDepth)
+    );
+    scene.add(rightWall)
+    console.log(geometryR)
+
+    const geometryB = new THREE.BoxGeometry(ncol * (xSpace) + boxWidth, topWall.position.y - bottomWall.position.y, boxDepth)
+    backWall = new THREE.Mesh(geometryB, material)
+    backWall.position.set(
+        0,
+        -0.34, 
+        rightWall.position.z - boxDepth
+    );
+    scene.add(backWall)
 
 }
 
@@ -73,4 +125,5 @@ function setupScene() {
     makeCubes()
     setupBallPaddle()
     addLights()
+    addWalls()
 }
