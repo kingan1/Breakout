@@ -15,19 +15,40 @@ function addLights () {
     scene.add(new THREE.AmbientLight(ambientColor, ambientIntensity))
 
     const directionalLight = new THREE.DirectionalLight(0xffffff, 0.5)
-    directionalLight.position.set(0, 0, 5)
+    directionalLight.position.set(0, -1, 5)
     scene.add(directionalLight)
 
     const geometryBackground = new THREE.PlaneGeometry(100, 100)
     const materialBackground = new THREE.MeshPhongMaterial({ color: 0x000000 })
 
     const background = new THREE.Mesh(geometryBackground, materialBackground)
-    background.receiveShadow = true
     background.position.set(0, 0, -1)
     scene.add(background)
 }
 
+function makeCubes () {
+    // cube object is {
+    //     cube: cube,
+    //     active: true / false
+    // }
+    for (let c = 0; c < ncol; c++) {
+        const row = []
+        for (let r = 0; r < nrow; r++) {
+            const cube = makeNewCube(colors[r])
+            cube.position.x = xStart + (c * xSpace)
+            cube.position.y = (r * boxHeight*2)
+
+            row.push({
+                cube: cube,
+                active: true})
+            scene.add(cube)
+        }
+        cubes.push(row)
+    }
+    numActive = ncol * nrow
+}
+
 function setupScene() {
-    scene.add(makeNewCube("red"))
+    makeCubes()
     addLights()
 }
