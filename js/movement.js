@@ -14,3 +14,10 @@ function checkPaddleBound(change, original) {
                       leftWall.position.x + boxHeight,
                       rightWall.position.x - boxHeight, paddleWidth)
 }
+
+function gameOver(ballPosition, paddlePosition) {
+    if (ballPosition.y < paddlePosition.y) {
+        return true
+    }
+    return false
+}

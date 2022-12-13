@@ -26,6 +26,9 @@ let colors = [
 total_space = (ncol * (boxWidth + 0)) / 2
 xStart = -1 * total_space
 
+// movement
+ballVelocity = {x: 0, y: -0.01, z: 0}
+
 // keyboard input
 keyboardC = ["ArrowLeft", "ArrowRight"]
 keys = [0,0]

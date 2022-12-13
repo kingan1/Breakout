@@ -27,13 +27,20 @@ function animate () {
     // left
     // right
     d = 0.05
+    ballMesh.position.add(ballVelocity)
 
     if (keys[0]) {
         if (checkPaddleBound(-1 * d, paddleMesh.position.x))
             paddleMesh.position.x -= d
-    }else if (keys[1]) {
+    } else if (keys[1]) {
         if (checkPaddleBound(d, paddleMesh.position.x))
             paddleMesh.position.x += d
+    }
+
+    if (gameOver(ballMesh.position, paddleMesh.position)) {
+        scene.remove(ballMesh)
+        scene.remove(paddleMesh)
+        console.log("OVER")
     }
 
     renderer.render(scene, camera)
