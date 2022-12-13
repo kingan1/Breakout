@@ -19,7 +19,7 @@ function addLights () {
     scene.add(directionalLight)
 
     const geometryBackground = new THREE.PlaneGeometry(100, 100)
-    const materialBackground = new THREE.MeshPhongMaterial({ color: 0x000000 })
+    const materialBackground = new THREE.MeshPhongMaterial({ color: "grey" })
 
     const background = new THREE.Mesh(geometryBackground, materialBackground)
     background.position.set(0, 0, -1)
@@ -48,7 +48,29 @@ function makeCubes () {
     numActive = ncol * nrow
 }
 
+function setupBallPaddle() {
+    // create the paddle
+    const paddleGeometry = new THREE.BoxGeometry(paddleWidth, boxHeight, boxDepth)
+    const paddleMaterial = new THREE.MeshPhongMaterial({
+        color: 0x0000ff
+    })
+    paddleMesh = new THREE.Mesh(paddleGeometry, paddleMaterial)
+    paddleMesh.position.copy(initialPaddlePosition)
+    scene.add(paddleMesh)
+
+    // create the ball
+    const ballGeometry = new THREE.SphereGeometry(ballRadius)
+    const ballMaterial = new THREE.MeshPhongMaterial({
+        color: "white"
+    })
+    ballMesh = new THREE.Mesh(ballGeometry, ballMaterial)
+    ballMesh.position.copy(initialBallPosition)
+    scene.add(ballMesh)
+
+}
+
 function setupScene() {
     makeCubes()
+    setupBallPaddle()
     addLights()
 }
