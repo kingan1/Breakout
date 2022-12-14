@@ -70,6 +70,10 @@ function checkBoxCollisions() {
                     } else {
                         ballVelocity.x *= -1
                     }
+
+                    // update score
+                    score += scoreVals[r]
+                    scoreElem.textContent = String(score).padStart(3, 0)
                 }
             }
         }

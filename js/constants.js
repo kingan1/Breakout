@@ -21,14 +21,24 @@ let colors = [
     "green","green",
     "orange","orange",
     "red","red"]
+let scoreVals = [
+    1, 1,
+    3, 3,
+    5, 5,
+    7, 7
+]
+let scoreElem = document.getElementById("score")
+let livesElem = document.getElementById("lives")
+let score = 0
+let lives = 3
 
 // x offset
-total_space = (ncol * (boxWidth + 0)) / 2
-xStart = -1 * total_space
+let total_space = (ncol * (boxWidth + 0)) / 2
+let xStart = -1 * total_space
 
 // movement
-ballVelocity = {x: 0, y: -0.03, z: 0}
-
+let initialBallVelocity = {x: 0, y: -0.03, z: 0}
+let ballVelocity = {...initialBallVelocity}
 // keyboard input
-keyboardC = ["ArrowLeft", "ArrowRight"]
-keys = [0,0]
+let keyboardC = ["ArrowLeft", "ArrowRight"]
+let keys = [0,0]

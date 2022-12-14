@@ -1,0 +1,47 @@
+body {
+	margin: 0;
+	background-color: #000;
+	color: #fff;
+}
+
+#parent {
+    position: absolute;
+    margin:auto;
+	font-size: 30px;
+    left: 0;
+    right: 0;
+    font-family: "Century Gothic";
+    margin-left: auto;
+    margin-right: auto;
+    width: 340px;
+}
+label {
+    margin-right:10px;
+}
+#score {
+    float: left;
+    margin-right:10px;
+}
+#scorelbl {
+    float: left;
+}
+#liveslbl {
+    float: left;
+}
+#lives {
+    float: left;
+    margin-right:10px;
+}
+#gameover {
+    position: absolute;
+    float:left;
+    left:0;
+    right:0;
+    top: 300px;
+    font-family: "Century Gothic";
+    color: red;
+    font-size:30px;
+    margin-left: auto;
+    margin-right: auto;
+    width:182px;
+}

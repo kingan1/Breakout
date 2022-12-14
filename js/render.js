@@ -45,7 +45,18 @@ function animate () {
 
     // if the ball goes below the paddle
     if (gameOver(ballMesh.position, paddleMesh.position)) {
-        ballVelocity = {x: 0, y: 0, z:0}
+        // decrease lives
+        if (lives == 0) {
+            // console.log("DONE")
+            ballVelocity.x = 0
+            ballVelocity.y = 0
+            document.getElementById("gameover").innerText = "GAME OVER";
+        } else {
+            lives -= 1
+            livesElem.innerText = String(lives).padStart(3, 0)
+            resetGame()
+        }
+
     }
 
     // if the ball hits the paddle

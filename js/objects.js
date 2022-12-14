@@ -120,9 +120,24 @@ function addWalls() {
 
 }
 
-function setupScene() {
+function resetGame() {
+    for (let c = 0; c < ncol; c++) {
+        for (let r = 0; r < nrow; r++) {
+            scene.remove(cubes[c][r].cube)
+        }
+    }
+    cubes = []
+    ballMesh.position.copy(initialBallPosition)
+    paddleMesh.position.copy(initialPaddlePosition)
+    ballVelocity = {...initialBallVelocity}
+    setupScene(true)
+}
+
+function setupScene(game_resetted=false) {
     makeCubes()
-    setupBallPaddle()
-    addLights()
-    addWalls()
+    if (!game_resetted) {
+        setupBallPaddle()
+        addLights()
+        addWalls()
+    }
 }
