@@ -29,19 +29,34 @@ function animate () {
     d = 0.05
     ballMesh.position.add(ballVelocity)
 
+    // ensure ball is within bounds
+    correctBallVelocity()
+
+    
     if (keys[0]) {
+        // if the left key was pressed
         if (checkPaddleBound(-1 * d, paddleMesh.position.x))
             paddleMesh.position.x -= d
     } else if (keys[1]) {
+        // if the right key was pressed
         if (checkPaddleBound(d, paddleMesh.position.x))
             paddleMesh.position.x += d
     }
 
+    // if the ball goes below the paddle
     if (gameOver(ballMesh.position, paddleMesh.position)) {
-        scene.remove(ballMesh)
-        scene.remove(paddleMesh)
-        console.log("OVER")
+        ballVelocity = {x: 0, y: 0, z:0}
     }
+
+    // if the ball hits the paddle
+    collide_val = ballCollision(ballMesh.position, paddleMesh.position, paddleWidth)
+    if (collide_val) {
+        ballVelocity.y *= -1
+        // console.log(-1 * ((ballMesh.position.x - paddleMesh.position.x)))
+        ballVelocity.x += (0.03* (ballMesh.position.x - paddleMesh.position.x))
+        
+    }
+    checkBoxCollisions()
 
     renderer.render(scene, camera)
 };
